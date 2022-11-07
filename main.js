@@ -5,17 +5,23 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const navMobile = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 
+const productDetailCloseIcon=document.querySelector('.product-detail-close');
+
 const navShoppingCart = document.querySelector('.navbar-shopping-cart');
 const shopingCartContainer = document.querySelector('#shopingCartContainer');
-const cardsContainer=document.querySelector('.cards-container')
+const productDetailContainer= document.querySelector('#productDetail');
+const cardsContainer=document.querySelector('.cards-container');
 
 navEmail.addEventListener('click', toggleDesktopmenu);
 navMobile.addEventListener('click', toggleMobiletopmenu);
 navShoppingCart.addEventListener('click', toggleShoppingCart);
+productDetailCloseIcon.addEventListener('click',productCloseIcon);
+
 
 function toggleDesktopmenu() {
     desktopMenu.classList.toggle('inactive');
     shopingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
 }
 
 function toggleMobiletopmenu() {
@@ -28,9 +34,22 @@ function toggleShoppingCart() {
     shopingCartContainer.classList.toggle('inactive');
     desktopMenu.classList.add('inactive');
     mobileMenu.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
 
 
 }
+
+function clickEnProducto(){
+    productDetailContainer.classList.remove('inactive');
+    shopingCartContainer.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
+
+}
+
+function productCloseIcon(){
+    productDetailContainer.classList.add('inactive');
+}
+
 
 const productList = []
 productList.push({
@@ -94,6 +113,7 @@ for (produc of array) {
 
     const productImage = document.createElement('img');
     productImage.setAttribute('src', produc.image);
+    productImage.addEventListener('click', clickEnProducto);
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
@@ -128,4 +148,7 @@ for (produc of array) {
 }
 
 renderproduct(productList);
+
+
+
 
